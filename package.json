@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "Test Assessment Planit",
   "scripts": {
-    "tests": "testcafe chrome ./tests --assertion-timeout 20000",
-    "chrome:headless": "testcafe chrome:headless ./tests --assertion-timeout 30000",
+    "tests": "testcafe chrome ./tests --assertion-timeout 30000",
+    "tests:reporter": "testcafe chrome ./tests --reporter html:./reports/report.html --assertion-timeout 30000",
+    "chrome:headless": "testcafe chrome:headless ./tests --reporter html:./reports/report.html --assertion-timeout 30000",
     "prettier": "prettier --config .prettierrc **/**/*.js --write"
   },
   "author": "Fabio Santoro",
   "license": "ISC",
   "dependencies": {
-    "testcafe": "^1.11.0"
+    "testcafe": "^1.11.0",
+    "testcafe-reporter-html": "^1.4.6"
   },
   "devDependencies": {
     "prettier": "^2.4.0"

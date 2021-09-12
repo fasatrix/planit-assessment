@@ -9,6 +9,7 @@ class Inputs {
 
 class ContactFormPageObject {
   constructor() {
+    this.pageName = Selector('legend');
     this.contactLinkSelector = Selector(
       'div.nav-collapse ul.nav li#nav-contact > a'
     );

@@ -1,4 +1,5 @@
 import { t, Selector } from 'testcafe';
+import formPage from './contactFormPageObject';
 
 const UnitPrice = {
   'Teddy Bear': 12.99,
@@ -17,6 +18,11 @@ class ShoppingCartPage {
     this.cartItemsNumber = Selector('#nav-cart > a');
     this.tableOfItems = Selector('tbody > tr > td');
     this.total = Selector('td > strong');
+    this.checkOutBtn = Selector('a.btn-checkout');
+    this.yesBtn = Selector(
+      'body > div.popup.modal.hide.ng-scope.in > div.modal-footer > a.btn.btn-success'
+    );
+    this.emptyCartBtn = Selector('a[class="btn btn-danger ng-scope"]');
   }
 
   async addProductByName(product) {
@@ -56,7 +62,7 @@ class ShoppingCartPage {
       .parent('tr')
       .find('td > input');
     await t.typeText(selector, newQuantity.toString(), { replace: true });
-    const total = (this.getTotalAmount([productName]) * newQuantity);
+    const total = this.getTotalAmount([productName]) * newQuantity;
     await t.expect(this.total.innerText).eql(`Total: ${total.toString()}`);
   }
 
@@ -67,6 +73,29 @@ class ShoppingCartPage {
     }
     return total;
   }
+
+  async emptyCart() {
+    await t.click(this.emptyCartBtn).click(this.yesBtn);
+  }
+
+  async checkOut() {
+    await this.navigateToCart();
+    await t
+      .click(this.checkOutBtn)
+      .expect(formPage.pageName.innerText)
+      .eql('Delivery Details');
+  }
+
+  async deleteByProductName(productName) {
+    // the following is needed due to a leading space in the product name
+    const productNameWithSpace = productName + new Array(1).join(' ');
+    const item = await this.tableOfItems
+        .withText(productNameWithSpace)
+        .parent('tr')
+        .find('a > i');
+    await t.click(item).click(this.yesBtn);
+  }
+
 }
 
 export default new ShoppingCartPage();
