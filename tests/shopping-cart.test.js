@@ -1,4 +1,6 @@
 import ShoppingCartPage from '../pages/shoppingCartPageObject';
+import shoppingCartPageObject from '../pages/shoppingCartPageObject';
+
 
 fixture`Shopping Cart with Page Object`
   .page`https://jupiter.cloud.planittesting.com/#/shop`;
@@ -18,10 +20,16 @@ test("I should be able to see an added item in the cart checkout's page", async 
   await ShoppingCartPage.navigateToCart();
   await ShoppingCartPage.checkOutContainsProduct('Stuffed Frog');
 });
-test('I should be able to see the correct "Total" while updating the number of items', async (t) => {
-  await ShoppingCartPage.updateQuantityFor(
-    ' Stuffed Frog',
-    2,
-    10.99
-  );
+test.only('I should be able to see the correct "Total" while updating the number of items for the same Product', async (t) => {
+  const product = 'Stuffed Frog';
+  await shoppingCartPageObject.addProductByName(product);
+  await shoppingCartPageObject.navigateToCart();
+  await ShoppingCartPage.updateQuantityFor(product, 3, 10.99);
+});
+test.only('I should be able to see the correct "Total" if I add multiple products', async (t) => {
+  const products = ['Stuffed Frog', 'Teddy Bear', 'Fluffy Bunny' ];
+  await shoppingCartPageObject.addProductByName(products);
+  await ShoppingCartPage.navigateToCart();
+  const total = await shoppingCartPageObject.getTotalAmount(products);
+  await t.expect(shoppingCartPageObject.total.innerText).eql(`Total: ${total.toString()}`);
 });
