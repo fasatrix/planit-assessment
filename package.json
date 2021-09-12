@@ -4,11 +4,15 @@
   "description": "Test Assessment Planit",
   "scripts": {
     "tests": "testcafe chrome ./tests --assertion-timeout 20000",
-    "chrome:headless": "testcafe chrome:headless ./tests --assertion-timeout 20000"
+    "chrome:headless": "testcafe chrome:headless ./tests --assertion-timeout 20000",
+    "prettier": "prettier --config .prettierrc **/**/*.js --write"
   },
   "author": "Fabio Santoro",
   "license": "ISC",
   "dependencies": {
     "testcafe": "^1.11.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.0"
   }
 }
