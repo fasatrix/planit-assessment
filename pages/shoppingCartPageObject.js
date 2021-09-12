@@ -56,11 +56,11 @@ class ShoppingCartPage {
       .parent('tr')
       .find('td > input');
     await t.typeText(selector, newQuantity.toString(), { replace: true });
-    const total = (await this.getTotalAmount([productName]) * newQuantity);
+    const total = (this.getTotalAmount([productName]) * newQuantity);
     await t.expect(this.total.innerText).eql(`Total: ${total.toString()}`);
   }
 
-  async getTotalAmount(products) {
+  getTotalAmount(products) {
     let total = 0;
     for (const p of products) {
       total = total + UnitPrice[p];

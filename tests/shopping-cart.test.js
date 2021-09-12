@@ -20,16 +20,16 @@ test("I should be able to see an added item in the cart checkout's page", async 
   await ShoppingCartPage.navigateToCart();
   await ShoppingCartPage.checkOutContainsProduct('Stuffed Frog');
 });
-test.only('I should be able to see the correct "Total" while updating the number of items for the same Product', async (t) => {
+test('I should be able to see the correct "Total" while updating the number of items for the same Product', async (t) => {
   const product = 'Stuffed Frog';
   await shoppingCartPageObject.addProductByName(product);
   await shoppingCartPageObject.navigateToCart();
   await ShoppingCartPage.updateQuantityFor(product, 3, 10.99);
 });
-test.only('I should be able to see the correct "Total" if I add multiple products', async (t) => {
+test('I should be able to see the correct "Total" if I add multiple products', async (t) => {
   const products = ['Stuffed Frog', 'Teddy Bear', 'Fluffy Bunny' ];
   await shoppingCartPageObject.addProductByName(products);
   await ShoppingCartPage.navigateToCart();
-  const total = await shoppingCartPageObject.getTotalAmount(products);
+  const total = shoppingCartPageObject.getTotalAmount(products);
   await t.expect(shoppingCartPageObject.total.innerText).eql(`Total: ${total.toString()}`);
 });
