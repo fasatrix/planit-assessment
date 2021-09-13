@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Test Assessment Planit",
   "scripts": {
-    "tests": "testcafe chrome ./tests --assertion-timeout 30000",
-    "tests:reporter": "testcafe chrome ./tests --reporter html:./reports/report.html --assertion-timeout 30000",
-    "chrome:headless": "testcafe chrome:headless ./tests --reporter html:./reports/report.html --assertion-timeout 30000",
+    "tests": "testcafe chrome ./tests --assertion-timeout 60000",
+    "tests:reporter": "testcafe chrome ./tests --reporter html:./reports/report.html --assertion-timeout 60000",
+    "chrome:headless": "testcafe chrome:headless ./tests --reporter html:./reports/report.html --assertion-timeout 60000",
     "prettier": "prettier --config .prettierrc **/**/*.js --write"
   },
   "author": "Fabio Santoro",

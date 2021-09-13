@@ -1,7 +1,7 @@
 import sc from '../pages/shoppingCartPageObject';
+import { url } from '../common/common';
 
-fixture`Shopping Cart with Page Object`
-  .page`https://jupiter.cloud.planittesting.com/#/shop`;
+fixture`Shopping Cart with Page Object`.page`${url}/#/shop`;
 
 test('I should be able to add 1 item in the shopping cart by name', async (t) => {
   await sc.addProductByName('Stuffed Frog');
@@ -51,7 +51,6 @@ test('I should be able to add and then delete a product from the shopping cart',
   await sc.addProductByName(product);
   await t.expect(await sc.numberOfItems()).eql('1');
   await sc.navigateToCart();
-  await sc.deleteByProductName(product)
+  await sc.deleteByProductName(product);
   await t.expect(await sc.numberOfItems()).eql('0');
 });
-

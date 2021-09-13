@@ -10,9 +10,7 @@ class Inputs {
 class ContactFormPageObject {
   constructor() {
     this.pageName = Selector('legend');
-    this.contactLinkSelector = Selector(
-      'div.nav-collapse ul.nav li#nav-contact > a'
-    );
+    this.contactLinkSelector = Selector('#nav-contact > a');
     this.forenameErrorSelector = Selector('span[id="forename-err"]');
     this.emailErrorSelector = Selector('span[id="email-err"]');
     this.textAreaErrorSelector = Selector('span[id="message-err"]');

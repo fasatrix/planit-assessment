@@ -1,7 +1,7 @@
 import ContactPageObject from '../pages/contactFormPageObject';
+import { url } from '../common/common';
 
-fixture`Contact Form with Page Object`
-  .page`https://jupiter.cloud.planittesting.com/#/`;
+fixture`Contact Form with Page Object`.page`${url}`;
 
 test('I can validate errors on the "Contact" page', async (t) => {
   await ContactPageObject.navigateToContactPage();

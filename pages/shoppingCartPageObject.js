@@ -90,12 +90,11 @@ class ShoppingCartPage {
     // the following is needed due to a leading space in the product name
     const productNameWithSpace = productName + new Array(1).join(' ');
     const item = await this.tableOfItems
-        .withText(productNameWithSpace)
-        .parent('tr')
-        .find('a > i');
+      .withText(productNameWithSpace)
+      .parent('tr')
+      .find('a > i');
     await t.click(item).click(this.yesBtn);
   }
-
 }
 
 export default new ShoppingCartPage();

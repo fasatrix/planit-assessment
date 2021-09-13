@@ -1,13 +1,12 @@
 import { Selector } from 'testcafe';
-
+import { url } from '../common/common';
 const contactUsLink = Selector('#nav-contact > a');
 const selector = Selector('div.form-actions');
 const forenameErrorMessageSelector = Selector('span[id="forename-err"]');
 const emailErrorMessageSelector = Selector('span[id="email-err"]');
 const textAreaSelector = Selector('span[id="message-err"]');
 
-fixture`Contact Form - No Page Object`
-  .page`https://jupiter.cloud.planittesting.com`;
+fixture`Contact Form - No Page Object`.page`${url}`;
 
 test('I can validate errors on the "Contact" page', async (t) => {
   await t
